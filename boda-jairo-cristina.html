@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jairo & Cristina — Confirmación de asistencia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --gold: #b8975a;
+    --gold-light: #d4b47a;
+    --dark: #1a1714;
+    --warm-gray: #8a8178;
+    --border: rgba(184,151,90,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Decorative background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(184,151,90,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 80%, rgba(184,151,90,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  /* Church charcoal illustration behind everything */
+  .hero-church {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(700px, 95vw);
+    opacity: 0.09;
+    pointer-events: none;
+    z-index: 0;
+    filter: contrast(1.4) blur(0.3px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-name-jairo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 11vw, 8rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.35s;
+  }
+
+  .hero-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+    margin: 0.5rem 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.55s;
+  }
+
+  .hero-name-cristina {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 11vw, 8rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.7s;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .hero-divider-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-style: italic;
+    color: var(--warm-gray);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-locations {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  .hero-loc {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .hero-loc strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.4s;
+    cursor: pointer;
+  }
+
+  .hero-scroll span {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ───── FORM SECTION ───── */
+  .form-section {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 3.5rem;
+    line-height: 1.2;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ───── FORM CARDS ───── */
+  .form-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-card:hover {
+    border-color: rgba(184,151,90,0.55);
+    box-shadow: 0 4px 30px rgba(184,151,90,0.08);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  /* INPUTS */
+  .field-group { margin-bottom: 1.2rem; }
+  .field-group:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid var(--border);
+    border-radius: 1px;
+    padding: 0.75rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--dark);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,151,90,0.1);
+  }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* MEMBER ROWS */
+  .members-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .member-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.6rem;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .member-row input { margin: 0; }
+
+  .member-type {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    white-space: nowrap;
+    padding: 0 0.3rem;
+  }
+
+  .btn-remove {
+    background: none;
+    border: 1px solid rgba(184,151,90,0.3);
+    border-radius: 1px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--warm-gray);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-remove:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-add-member {
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 1px;
+    width: 100%;
+    padding: 0.6rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-add-member:hover {
+    background: rgba(184,151,90,0.05);
+    border-color: var(--gold);
+  }
+
+  /* RADIO / CHECKBOX GROUPS */
+  .option-group {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .option-btn {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--border);
+    border-radius: 1px;
+    padding: 0.55rem 1.1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .option-btn:hover { border-color: var(--gold-light); color: var(--dark); }
+  .option-btn.selected {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: white;
+  }
+
+  /* ALLERGY ROWS */
+  .allergy-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .allergy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.6rem;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* BUS SECTION */
+  .bus-options { display: flex; flex-direction: column; gap: 1rem; }
+  .bus-option-label {
+    font-size: 0.75rem;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+
+  /* SUBMIT */
+  .submit-wrap {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .btn-submit {
+    background: var(--dark);
+    border: none;
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 1.1rem 3.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .btn-submit:hover::before { transform: translateX(0); }
+  .btn-submit span { position: relative; z-index: 1; }
+
+  /* SUCCESS */
+  .success-panel {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .success-panel.visible { display: block; animation: fadeUp 0.6s ease; }
+
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .success-msg {
+    color: var(--warm-gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.4; transform: scaleY(0.7); }
+  }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .allergy-row { grid-template-columns: 1fr auto; }
+    .allergy-row select { display: none; }
+    .member-row { grid-template-columns: 1fr auto auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+
+  <!-- Charcoal church illustration (SVG) as background -->
+  <svg class="hero-church" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1714" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Base ground line -->
+    <line x1="0" y1="510" x2="700" y2="510" stroke-width="2"/>
+    <!-- Main nave body -->
+    <rect x="170" y="260" width="360" height="250" stroke-width="2.5"/>
+    <!-- Left tower -->
+    <rect x="130" y="140" width="100" height="370" stroke-width="2.5"/>
+    <!-- Left tower spire -->
+    <polygon points="180,10 130,140 230,140" stroke-width="2" fill="rgba(26,23,20,0.04)"/>
+    <!-- Right tower -->
+    <rect x="470" y="140" width="100" height="370" stroke-width="2.5"/>
+    <!-- Right tower spire -->
+    <polygon points="520,10 470,140 570,140" stroke-width="2" fill="rgba(26,23,20,0.04)"/>
+    <!-- Central portal arch -->
+    <path d="M280,510 L280,370 Q350,310 420,370 L420,510" stroke-width="2"/>
+    <!-- Rose window -->
+    <circle cx="350" cy="270" r="38" stroke-width="1.8"/>
+    <circle cx="350" cy="270" r="22" stroke-width="1.2"/>
+    <line x1="350" y1="232" x2="350" y2="308" stroke-width="1"/>
+    <line x1="312" y1="270" x2="388" y2="270" stroke-width="1"/>
+    <line x1="323" y1="243" x2="377" y2="297" stroke-width="1"/>
+    <line x1="377" y1="243" x2="323" y2="297" stroke-width="1"/>
+    <!-- Left tower window arches -->
+    <path d="M148,220 Q180,195 212,220" stroke-width="1.5" fill="none"/>
+    <rect x="155" y="220" width="50" height="55" stroke-width="1.2"/>
+    <path d="M148,310 Q180,285 212,310" stroke-width="1.5" fill="none"/>
+    <rect x="155" y="310" width="50" height="55" stroke-width="1.2"/>
+    <!-- Right tower window arches -->
+    <path d="M488,220 Q520,195 552,220" stroke-width="1.5" fill="none"/>
+    <rect x="495" y="220" width="50" height="55" stroke-width="1.2"/>
+    <path d="M488,310 Q520,285 552,310" stroke-width="1.5" fill="none"/>
+    <rect x="495" y="310" width="50" height="55" stroke-width="1.2"/>
+    <!-- Nave side windows -->
+    <path d="M200,330 Q215,310 230,330" stroke-width="1.2" fill="none"/>
+    <rect x="203" y="330" width="24" height="40" stroke-width="1"/>
+    <path d="M460,330 Q475,310 490,330" stroke-width="1.2" fill="none"/>
+    <rect x="463" y="330" width="24" height="40" stroke-width="1"/>
+    <!-- Decorative horizontal string course -->
+    <line x1="130" y1="260" x2="570" y2="260" stroke-width="1.5"/>
+    <!-- Steps -->
+    <rect x="250" y="500" width="200" height="8" stroke-width="1.2"/>
+    <rect x="265" y="495" width="170" height="6" stroke-width="1"/>
+    <!-- Charcoal texture strokes (light hatching on towers) -->
+    <line x1="138" y1="160" x2="225" y2="160" stroke-width="0.5" stroke-opacity="0.4"/>
+    <line x1="138" y1="175" x2="225" y2="175" stroke-width="0.5" stroke-opacity="0.3"/>
+    <line x1="138" y1="190" x2="225" y2="190" stroke-width="0.5" stroke-opacity="0.4"/>
+    <line x1="478" y1="160" x2="565" y2="160" stroke-width="0.5" stroke-opacity="0.4"/>
+    <line x1="478" y1="175" x2="565" y2="175" stroke-width="0.5" stroke-opacity="0.3"/>
+    <line x1="478" y1="190" x2="565" y2="190" stroke-width="0.5" stroke-opacity="0.4"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nos casamos</p>
+
+    <div class="hero-name-jairo">Jairo</div>
+    <div class="hero-amp">&amp;</div>
+    <div class="hero-name-cristina">Cristina</div>
+
+    <div class="hero-divider" style="opacity:0;animation:fadeUp 0.8s ease forwards 0.9s"><div class="hero-divider-diamond"></div></div>
+
+    <p class="hero-date" style="opacity:0;animation:fadeUp 0.8s ease forwards 1.05s">
+      10 de abril de 2027 · Asturias
+    </p>
+
+    <div class="hero-locations" style="opacity:0;animation:fadeUp 0.8s ease forwards 1.2s">
+      <p class="hero-loc">⛪ Ceremonia · <strong>Iglesia de Santo Tomás de Canterbury</strong> · Avilés</p>
+      <p class="hero-loc">🥂 Banquete · <strong>Palacio de Moutas</strong> · Pravia</p>
+    </div>
+  </div>
+
+  <div class="hero-scroll" onclick="document.querySelector('.form-section').scrollIntoView({behavior:'smooth'})">
+    <span>Confirmar asistencia</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ FORM ═══════════════ -->
+<section class="form-section">
+  <p class="section-label">Confirmación de asistencia</p>
+  <h2 class="section-title">Cuéntanos que <em>venís</em></h2>
+
+  <div id="formContent">
+
+    <!-- 1. ASISTENTES -->
+    <div class="form-card">
+      <div class="card-header">
+        <span class="card-num">I</span>
+        <span class="card-title">Asistentes de vuestra unidad</span>
+      </div>
+
+      <div class="field-group">
+        <label>Persona de contacto (nombre y apellidos)</label>
+        <input type="text" id="contacto" placeholder="Ej. María García López">
+      </div>
+
+      <div class="field-group">
+        <label>Teléfono o email de contacto</label>
+        <input type="text" id="contactoInfo" placeholder="Ej. 612 345 678 · maria@correo.com">
+      </div>
+
+      <div class="field-group" style="margin-top:1.5rem">
+        <label>Nombre y apellidos de cada asistente</label>
+        <div class="members-list" id="membersList">
+          <!-- rows inserted by JS -->
+        </div>
+        <button class="btn-add-member" onclick="addMember('adulto')">+ Añadir adulto</button>
+        <button class="btn-add-member" onclick="addMember('niño/a')" style="margin-top:0.4rem">+ Añadir niño/a</button>
+      </div>
+    </div>
+
+    <!-- 2. ALERGIAS -->
+    <div class="form-card">
+      <div class="card-header">
+        <span class="card-num">II</span>
+        <span class="card-title">Alergias e intolerancias</span>
+      </div>
+
+      <div class="field-group">
+        <label>¿Algún asistente tiene alergia o intolerancia?</label>
+        <div class="option-group" id="alergiasYN">
+          <div class="option-btn selected" onclick="toggleAlergias(this, false)">No, ninguno</div>
+          <div class="option-btn" onclick="toggleAlergias(this, true)">Sí, indicar cuál</div>
+        </div>
+      </div>
+
+      <div id="alergiasDetail" style="display:none; margin-top:1.2rem">
+        <div class="allergy-list" id="allergyList"></div>
+        <button class="btn-add-member" onclick="addAllergy()">+ Añadir persona con alergia</button>
+      </div>
+    </div>
+
+    <!-- 3. MENÚ INFANTIL -->
+    <div class="form-card">
+      <div class="card-header">
+        <span class="card-num">III</span>
+        <span class="card-title">Menú infantil</span>
+      </div>
+      <div class="field-group">
+        <label>¿Necesitáis menú infantil?</label>
+        <div class="option-group" id="menuInfantilOpts">
+          <div class="option-btn selected" onclick="selectOption(this, 'menuInfantilOpts')">No</div>
+          <div class="option-btn" onclick="selectOption(this, 'menuInfantilOpts')">1 niño/a</div>
+          <div class="option-btn" onclick="selectOption(this, 'menuInfantilOpts')">2 niños/as</div>
+          <div class="option-btn" onclick="selectOption(this, 'menuInfantilOpts')">3 o más</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. AUTOBÚS -->
+    <div class="form-card">
+      <div class="card-header">
+        <span class="card-num">IV</span>
+        <span class="card-title">Autobús</span>
+      </div>
+
+      <div class="bus-options">
+        <div>
+          <p class="bus-option-label">¿Usaréis el autobús de <strong>ida</strong> (al banquete)?</p>
+          <div class="option-group" id="busIda">
+            <div class="option-btn selected" onclick="selectOption(this, 'busIda')">No</div>
+            <div class="option-btn" onclick="selectOption(this, 'busIda')">Sí</div>
+          </div>
+        </div>
+        <div>
+          <p class="bus-option-label">¿Usaréis el autobús de <strong>vuelta</strong>?</p>
+          <div class="option-group" id="busVuelta">
+            <div class="option-btn selected" onclick="selectOption(this, 'busVuelta')">No</div>
+            <div class="option-btn" onclick="selectOption(this, 'busVuelta')">Sí</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. CANCIÓN -->
+    <div class="form-card">
+      <div class="card-header">
+        <span class="card-num">V</span>
+        <span class="card-title">Una canción que no puede faltar</span>
+      </div>
+      <div class="field-group">
+        <label>Título y artista</label>
+        <input type="text" id="cancion" placeholder="Ej. La Bamba · Ritchie Valens">
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button class="btn-submit" onclick="submitForm()">
+        <span>Confirmar asistencia</span>
+      </button>
+    </div>
+
+  </div><!-- end formContent -->
+
+  <!-- SUCCESS -->
+  <div class="success-panel" id="successPanel">
+    <div class="success-icon">✦</div>
+    <h3 class="success-title">¡Muchísimas gracias!</h3>
+    <p class="success-msg">
+      Hemos recibido vuestra confirmación.<br>
+      Jairo y Cristina están deseando celebrarlo con vosotros.
+    </p>
+  </div>
+
+</section>
+
+<footer>
+  Jairo &amp; Cristina · 10 de abril de 2027 · Asturias
+</footer>
+
+<script>
+// ─── STATE ───────────────────────────────
+let memberCount = 0;
+let allergyCount = 0;
+
+// ─── INIT ────────────────────────────────
+addMember('adulto');
+addMember('adulto');
+
+// ─── MEMBERS ─────────────────────────────
+function addMember(type) {
+  memberCount++;
+  const list = document.getElementById('membersList');
+  const row = document.createElement('div');
+  row.className = 'member-row';
+  row.id = `member-${memberCount}`;
+  row.innerHTML = `
+    <input type="text" placeholder="Nombre y apellidos">
+    <span class="member-type">${type}</span>
+    <button class="btn-remove" onclick="removeRow('member-${memberCount}')">×</button>
+  `;
+  list.appendChild(row);
+}
+
+function removeRow(id) {
+  const el = document.getElementById(id);
+  if (el && document.querySelectorAll('.member-row').length > 1) {
+    el.remove();
+  }
+}
+
+// ─── ALERGIAS ────────────────────────────
+function toggleAlergias(btn, show) {
+  document.querySelectorAll('#alergiasYN .option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const detail = document.getElementById('alergiasDetail');
+  detail.style.display = show ? 'block' : 'none';
+  if (show && document.querySelectorAll('.allergy-row').length === 0) addAllergy();
+}
+
+function addAllergy() {
+  allergyCount++;
+  const list = document.getElementById('allergyList');
+  const row = document.createElement('div');
+  row.className = 'allergy-row';
+  row.id = `allergy-${allergyCount}`;
+  row.innerHTML = `
+    <input type="text" placeholder="Nombre del asistente">
+    <input type="text" placeholder="Alergia / intolerancia">
+    <button class="btn-remove" onclick="removeRow('allergy-${allergyCount}')">×</button>
+  `;
+  list.appendChild(row);
+}
+
+// ─── GENERIC OPTION SELECT ───────────────
+function selectOption(btn, groupId) {
+  document.querySelectorAll(`#${groupId} .option-btn`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+// ─── SUBMIT ──────────────────────────────
+function submitForm() {
+  const contacto = document.getElementById('contacto').value.trim();
+  if (!contacto) {
+    document.getElementById('contacto').focus();
+    document.getElementById('contacto').style.borderColor = 'var(--gold)';
+    return;
+  }
+
+  // Collect data
+  const members = [...document.querySelectorAll('.member-row')].map(row => ({
+    nombre: row.querySelector('input').value,
+    tipo: row.querySelector('.member-type').textContent
+  }));
+
+  const allergies = [...document.querySelectorAll('.allergy-row')].map(row => {
+    const inputs = row.querySelectorAll('input');
+    return { nombre: inputs[0].value, alergia: inputs[1].value };
+  });
+
+  const menuInfantil = document.querySelector('#menuInfantilOpts .selected')?.textContent;
+  const busIda = document.querySelector('#busIda .selected')?.textContent;
+  const busVuelta = document.querySelector('#busVuelta .selected')?.textContent;
+  const cancion = document.getElementById('cancion').value;
+  const contactoInfo = document.getElementById('contactoInfo').value;
+
+  // Save to storage
+  try {
+    const key = `rsvp-${Date.now()}`;
+    const data = JSON.stringify({ contacto, contactoInfo, members, allergies, menuInfantil, busIda, busVuelta, cancion, ts: new Date().toISOString() });
+    window.storage?.set(key, data).catch(() => {});
+    localStorage.setItem(key, data); // fallback
+  } catch(e) {}
+
+  // Show success
+  document.getElementById('formContent').style.display = 'none';
+  const s = document.getElementById('successPanel');
+  s.classList.add('visible');
+  s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
